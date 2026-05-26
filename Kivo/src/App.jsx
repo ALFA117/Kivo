@@ -127,6 +127,10 @@ export default function App() {
 
       {/* ── HERO ── */}
       <header className="hero">
+        <div className="hero-bg" aria-hidden="true">
+          <div className="hero-orb hero-orb--gold" />
+          <div className="hero-orb hero-orb--teal" />
+        </div>
         <p className="hero-eyebrow">{t.hero.eyebrow}</p>
         <h1 className="hero-title">
           {t.hero.title1}<br />
