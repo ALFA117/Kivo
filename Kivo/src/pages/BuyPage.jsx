@@ -15,7 +15,10 @@ export function BuyPage() {
   const amount   = params.get('amount')   || '0'
   const title    = params.get('title')    || 'Oferta'
   const desc     = params.get('desc')     || title
-  const resolver = params.get('resolver') || seller
+  // Nunca cae en el vendedor por defecto: sería su propio árbitro en una
+  // disputa. Sin un resolver explícito en el link, cae en la dirección de
+  // plataforma (neutral) si está configurada; si no, se bloquea el pago.
+  const resolver = params.get('resolver') || import.meta.env.VITE_KIVO_PLATFORM_ADDRESS || ''
   const langParam = params.get('lang')
 
   const { t, setLang } = useLanguage()

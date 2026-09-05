@@ -53,6 +53,18 @@ export function useEscrowFlow() {
     setError(null)
     setResult(null)
     try {
+      // Sin esto, la comisión de plataforma se la paga uno a sí mismo — nunca
+      // debe caer en silencio en la wallet de quien está creando el escrow.
+      if (Number(formData.platformFee) > 0 && !KIVO_PLATFORM_ADDRESS) {
+        throw new Error('Falta configurar VITE_KIVO_PLATFORM_ADDRESS: no se puede cobrar una comisión de plataforma sin esa dirección.')
+      }
+      if (!formData.disputeResolver) {
+        throw new Error('Falta el árbitro (disputeResolver): no se puede crear el escrow sin uno.')
+      }
+      if (formData.disputeResolver === formData.serviceProvider) {
+        throw new Error('El árbitro (disputeResolver) no puede ser el mismo vendedor — es un conflicto de interés directo.')
+      }
+
       const engagementId = typeof crypto !== 'undefined' && crypto.randomUUID
         ? crypto.randomUUID()
         : `kivo-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`
@@ -67,7 +79,7 @@ export function useEscrowFlow() {
         roles: {
           approver:        walletAddress,
           serviceProvider: formData.serviceProvider,
-          platformAddress: KIVO_PLATFORM_ADDRESS || walletAddress,
+          platformAddress: KIVO_PLATFORM_ADDRESS,
           releaseSigner:   walletAddress,
           disputeResolver: formData.disputeResolver,
           receiver:        formData.receiver || formData.serviceProvider,
