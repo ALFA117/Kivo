@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { ConnectButton } from 'accesly'
 import { useWallet } from './context/WalletContext'
 import { useLanguage } from './context/LanguageContext'
+import AmbientBackground from './components/AmbientBackground'
+import ThemeToggle from './components/ThemeToggle'
 import { useNetwork } from './context/NetworkContext'
 import { EscrowModal }       from './components/EscrowModal'
 import { EscrowDrawer }      from './components/EscrowDrawer'
@@ -14,9 +16,9 @@ function shortenAddress(addr) {
 }
 
 const LANGUAGES = [
-  { code: 'es', label: 'ES', flag: '🇲🇽' },
-  { code: 'en', label: 'EN', flag: '🇺🇸' },
-  { code: 'pt', label: 'PT', flag: '🇧🇷' },
+  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN' },
+  { code: 'pt', label: 'PT' },
 ]
 
 const HexIcon = ({ size = 20, className = '' }) => (
@@ -74,6 +76,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <AmbientBackground />
 
       {/* ── NAVBAR ── */}
       <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
@@ -83,6 +86,7 @@ export default function App() {
         </div>
 
         <div className="nav-wallet">
+          <ThemeToggle />
           <div className="lang-selector">
             {LANGUAGES.map(l => (
               <button
@@ -90,8 +94,8 @@ export default function App() {
                 className={`lang-btn${lang === l.code ? ' lang-btn--active' : ''}`}
                 onClick={() => setLang(l.code)}
                 title={l.label}
+                aria-pressed={lang === l.code}
               >
-                <span className="lang-flag">{l.flag}</span>
                 <span className="lang-label">{l.label}</span>
               </button>
             ))}

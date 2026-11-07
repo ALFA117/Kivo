@@ -1,0 +1,13 @@
+{
+  "name": "Kivo",
+  "short_name": "Kivo",
+  "description": "Custodia programática sobre Stellar para el comercio mexicano.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07070e",
+  "theme_color": "#07070e",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

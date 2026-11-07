@@ -1,10 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>kivo-stellar</title>
+    <title>Kivo — custodia programática sobre Stellar para el comercio mexicano</title>
+    <meta name="description" content="El dinero queda retenido on-chain y solo se libera cuando comprador y vendedor confirman la entrega. Escrow en USDC sobre Stellar testnet. Stellar Hackathon 2026." />
+    <link rel="canonical" href="https://kivo-app-five.vercel.app/" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#07070e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kivo-app-five.vercel.app/" />
+    <meta property="og:site_name" content="Kivo" />
+    <meta property="og:title" content="Kivo — rieles de confianza para el comercio mexicano" />
+    <meta property="og:description" content="Escrow programático sobre Stellar: el dinero se libera solo cuando ambas partes confirman la entrega." />
+    <meta property="og:image" content="https://kivo-app-five.vercel.app/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kivo — rieles de confianza para el comercio mexicano" />
+    <meta name="twitter:description" content="Escrow programático en USDC sobre Stellar testnet." />
+    <meta name="twitter:image" content="https://kivo-app-five.vercel.app/og.png" />
+    <script>
+      try {
+        var t = localStorage.getItem('kivo-theme')
+        var l = t ? t === 'light' : matchMedia('(prefers-color-scheme: light)').matches
+        document.documentElement.dataset.theme = l ? 'light' : 'dark'
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

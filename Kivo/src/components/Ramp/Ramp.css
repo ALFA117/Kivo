@@ -51,7 +51,7 @@
   width: 34px;
   height: 34px;
   background: var(--gold-dim);
-  border: 1px solid rgba(212, 166, 71, 0.28);
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
   border-radius: var(--r-sm);
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@
 }
 
 .ramp-close {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgb(var(--fg-rgb) / 0.05);
   border: 1px solid var(--border);
   color: var(--muted);
   border-radius: var(--r-sm);
@@ -75,7 +75,7 @@
 }
 
 .ramp-close:hover {
-  border-color: rgba(45, 212, 191, 0.40);
+  border-color: rgb(var(--teal-rgb) / 0.40);
   color: var(--teal);
   background: var(--teal-dim);
 }
@@ -107,7 +107,7 @@
 .ramp-tab.active {
   background: var(--card);
   color: var(--teal);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 4px rgb(var(--shadow-rgb) / 0.35);
 }
 
 .ramp-tab:hover:not(.active) { color: var(--text); }
@@ -128,7 +128,7 @@
 }
 
 .ramp-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
@@ -158,18 +158,18 @@
 .ramp-input::placeholder { color: var(--muted); opacity: 0.55; }
 
 .ramp-input:focus {
-  border-color: rgba(45, 212, 191, 0.45);
-  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.08);
+  border-color: rgb(var(--teal-rgb) / 0.45);
+  box-shadow: 0 0 0 3px rgb(var(--teal-rgb) / 0.08);
 }
 
 .ramp-input-badge {
   position: absolute;
   right: 12px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--teal);
   background: var(--teal-dim);
-  border: 1px solid rgba(45, 212, 191, 0.22);
+  border: 1px solid rgb(var(--teal-rgb) / 0.22);
   padding: 3px 9px;
   border-radius: 99px;
   pointer-events: none;
@@ -208,7 +208,7 @@
 /* ── Info note ── */
 .ramp-note {
   background: var(--teal-dim);
-  border: 1px solid rgba(45, 212, 191, 0.20);
+  border: 1px solid rgb(var(--teal-rgb) / 0.20);
   border-radius: var(--r-md);
   padding: 11px 14px;
   font-size: 0.82rem;
@@ -232,13 +232,13 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 18px rgba(212, 166, 71, 0.25);
+  box-shadow: 0 4px 18px rgb(var(--gold-rgb) / 0.25);
 }
 
 .ramp-btn-primary:hover:not(:disabled) {
   opacity: 0.9;
   transform: translateY(-1px);
-  box-shadow: 0 8px 26px rgba(212, 166, 71, 0.35);
+  box-shadow: 0 8px 26px rgb(var(--gold-rgb) / 0.35);
 }
 
 .ramp-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
@@ -257,7 +257,7 @@
 }
 
 .ramp-btn-ghost:hover {
-  border-color: rgba(45, 212, 191, 0.40);
+  border-color: rgb(var(--teal-rgb) / 0.40);
   color: var(--teal);
   background: var(--teal-dim);
 }
@@ -277,7 +277,7 @@
 /* ── Error banner ── */
 .ramp-error {
   background: var(--red-dim);
-  border: 1px solid rgba(248, 113, 113, 0.28);
+  border: 1px solid rgb(var(--red-rgb) / 0.28);
   border-radius: var(--r-md);
   padding: 10px 14px;
   font-size: 0.83rem;
@@ -317,7 +317,7 @@
 /* ── CLABE card ── */
 .ramp-clabe-card {
   background: var(--gold-dim);
-  border: 1px solid rgba(212, 166, 71, 0.28);
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
   border-radius: var(--r-md);
   padding: 16px;
   display: flex;
@@ -326,7 +326,7 @@
 }
 
 .ramp-clabe-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -385,8 +385,8 @@
 }
 
 @keyframes ramp-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 166, 71, 0.40); }
-  50%       { box-shadow: 0 0 0 7px rgba(212, 166, 71, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgb(var(--gold-rgb) / 0.40); }
+  50%       { box-shadow: 0 0 0 7px rgb(var(--gold-rgb) / 0); }
 }
 
 .ramp-step-text { font-size: 0.85rem; color: var(--muted); line-height: 1.4; }

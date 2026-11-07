@@ -6,7 +6,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #07070e;
+  background: var(--ink);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,14 +18,14 @@ body {
 }
 
 ::selection {
-  background: rgba(212, 166, 71, 0.22);
-  color: #f0c96a;
+  background: rgb(var(--gold-rgb) / 0.22);
+  color: var(--gold-light);
 }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgb(var(--fg-rgb) / 0.09);
   border-radius: 99px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--fg-rgb) / 0.15); }

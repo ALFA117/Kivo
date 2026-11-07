@@ -102,3 +102,31 @@ npm run dev
 ## Hackathon
 
 Proyecto desarrollado para **StellarHack 2026**.
+
+## FIX_NOTES (rediseño /diseno, 2026-10-11)
+
+- **La barra se cortaba en celular**: a 380 px, "Freighter" y "Connect Wallet" quedaban fuera de la pantalla y no se podían tocar. Ahora la barra hace wrap en filas.
+- **Contraste**: `--muted` era `#63637e` sobre `#07070e` (≈3.3:1) y se usaba en textos secundarios de toda la página. Ahora es `#8f8fa8` (≈6:1).
+- **Texto por debajo de 12 px**: 28 reglas de 9–11.5 px en `App.css` y `Ramp.css` subieron a 12 px.
+- **Favicon equivocado**: `public/favicon.svg` era el logo por defecto de Vite. Ahora es el hexágono dorado de Kivo (el mismo de la barra), y hay `apple-touch-icon.png`.
+- **SEO vacío**: el título era "kivo-stellar", `lang="en"` y sin descripción. Ahora hay título y descripción en español, `lang="es"`, canonical, Open Graph y X con `og.png` (captura real), `theme-color`, manifest, `robots.txt` y `sitemap.xml`.
+- **Banderas emoji** en el selector de idioma (🇲🇽 🇺🇸 🇧🇷): se ven distinto en cada sistema (en Windows salen como letras). Se quitaron; quedan ES/EN/PT, con `aria-pressed`, a 36 px dentro de una pastilla de 44.
+
+## DESIGN_NOTES
+
+- **Fondo 3D: el dado sacó la receta 6 (malla low-poly con Three.js).** Se adaptó a la custodia misma (`src/components/EscrowScene.jsx`):
+  - un **núcleo de alambre dorado**: los fondos retenidos;
+  - **dos anillos** que orbitan en ejes distintos, el **comprador en turquesa y el vendedor en oro**. Cada ~9 s convergen —las dos confirmaciones— y el núcleo se enciende y crece: el dinero se libera;
+  - una **nube de partículas** turquesa alrededor: los pagos de la red.
+  - El puntero mueve la cámara y el scroll la aleja y la baja. Three.js va en un chunk aparte y se carga cuando el navegador queda libre. DPR ≤ 2, pausa con la pestaña oculta, menos detalle en celular (la escena se pone arriba y más chica) y un cuadro quieto con `prefers-reduced-motion`. Dependencia nueva: `three@0.170.0`.
+- **Modo claro "papel de recibo"** (`#F7F5EF`): todos los `rgba()` de `App.css` y `Ramp.css` pasaron a tokens RGB (`--gold-rgb`, `--teal-rgb`, `--fg-rgb`…), y el oro y el turquesa se oscurecen en claro para pasar 4.5:1. El degradado del título termina en un dorado oscuro, no en el pálido. Botón luna/sol en la barra, con un script que lo aplica antes del primer pintado.
+
+### Checklist de 2 minutos en el celular
+
+1. Abre Kivo: arriba gira el núcleo dorado con sus dos anillos; espera ~9 s y se alinean.
+2. Todos los botones de la barra (tema, idioma, Testnet, Freighter, Connect Wallet) se ven y se pueden tocar.
+3. Toca el sol: todo pasa a claro y "Mexicano" se lee completo.
+4. El ícono de la pestaña es el hexágono dorado, no el rayo de Vite.
+5. Sin scroll horizontal.
+
+> Nota: la barra tiene un botón para cambiar a **Mainnet**. El portafolio presenta Kivo como testnet; si no debe moverse dinero real, conviene ocultarlo. No lo toqué porque es funcionalidad.

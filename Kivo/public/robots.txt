@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kivo-app-five.vercel.app/sitemap.xml
