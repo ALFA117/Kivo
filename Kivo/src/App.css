@@ -1573,6 +1573,10 @@ h2 {
   box-shadow: 0 0 12px var(--teal-glow);
 }
 
+/* Sin VITE_ENABLE_MAINNET es solo una etiqueta de red, no un botón */
+span.btn-network-toggle { cursor: default; }
+span.btn-network-toggle:hover { background: rgb(var(--teal-rgb) / 0.07); border-color: rgb(var(--teal-rgb) / 0.30); box-shadow: none; }
+
 .btn-network-toggle--mainnet {
   border-color: rgb(var(--gold-rgb) / 0.35);
   background: rgb(var(--gold-rgb) / 0.07);

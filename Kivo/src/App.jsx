@@ -42,7 +42,7 @@ export default function App() {
   } = useWallet()
 
   const { lang, setLang, t } = useLanguage()
-  const { network, toggleNetwork } = useNetwork()
+  const { network, toggleNetwork, mainnetEnabled } = useNetwork()
 
   const [showEscrow, setShowEscrow] = useState(false)
   const [showDrawer, setShowDrawer] = useState(false)
@@ -101,14 +101,21 @@ export default function App() {
             ))}
           </div>
 
-          <button
-            className={`btn-network-toggle${network === 'mainnet' ? ' btn-network-toggle--mainnet' : ''}`}
-            onClick={toggleNetwork}
-            title={network === 'testnet' ? 'Cambiar a Mainnet' : 'Cambiar a Testnet'}
-          >
-            <span className="network-dot" />
-            {network === 'testnet' ? 'Testnet' : 'Mainnet'}
-          </button>
+          {mainnetEnabled ? (
+            <button
+              className={`btn-network-toggle${network === 'mainnet' ? ' btn-network-toggle--mainnet' : ''}`}
+              onClick={toggleNetwork}
+              title={network === 'testnet' ? 'Cambiar a Mainnet (USDC real)' : 'Cambiar a Testnet'}
+            >
+              <span className="network-dot" />
+              {network === 'testnet' ? 'Testnet' : 'Mainnet'}
+            </button>
+          ) : (
+            <span className="btn-network-toggle" title="Demo en Stellar testnet: no se mueve dinero real">
+              <span className="network-dot" />
+              Testnet
+            </span>
+          )}
 
           {walletAddress && (
             <>

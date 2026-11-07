@@ -74,6 +74,7 @@ VITE_ETHERFUSE_API_KEY=          # API Key de Etherfuse
 VITE_ETHERFUSE_BASE_URL=         # URL base (default: https://api.sand.etherfuse.com)
 VITE_TRUSTLESS_API_KEY=          # API Key Trustless Work (testnet)
 VITE_TRUSTLESS_API_KEY_MAINNET=  # API Key Trustless Work (mainnet)
+VITE_ENABLE_MAINNET=false        # true muestra el cambio a Mainnet (USDC real)
 VITE_SUPABASE_URL=               # URL de tu proyecto Supabase
 VITE_SUPABASE_ANON_KEY=          # Anon key de Supabase
 ```
@@ -105,6 +106,7 @@ Proyecto desarrollado para **StellarHack 2026**.
 
 ## FIX_NOTES (rediseño /diseno, 2026-10-11)
 
+- **Mainnet al alcance de cualquier visitante**: el botón de la barra cambiaba a Mainnet (USDC real) aunque Kivo se presenta como demo en testnet. Ahora la red se queda en testnet y el botón solo aparece con `VITE_ENABLE_MAINNET=true`; sin esa variable se muestra una etiqueta "Testnet" que no es clicable. El código de mainnet sigue intacto.
 - **La barra se cortaba en celular**: a 380 px, "Freighter" y "Connect Wallet" quedaban fuera de la pantalla y no se podían tocar. Ahora la barra hace wrap en filas.
 - **Contraste**: `--muted` era `#63637e` sobre `#07070e` (≈3.3:1) y se usaba en textos secundarios de toda la página. Ahora es `#8f8fa8` (≈6:1).
 - **Texto por debajo de 12 px**: 28 reglas de 9–11.5 px en `App.css` y `Ramp.css` subieron a 12 px.

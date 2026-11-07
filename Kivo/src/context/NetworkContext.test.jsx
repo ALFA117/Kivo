@@ -19,14 +19,20 @@ describe('NetworkContext', () => {
   })
 
   it('toggles to mainnet', () => {
-    render(<NetworkProvider><NetworkDisplay /></NetworkProvider>)
+    render(<NetworkProvider mainnetEnabled><NetworkDisplay /></NetworkProvider>)
     fireEvent.click(screen.getByText('Toggle'))
     expect(screen.getByTestId('network').textContent).toBe('mainnet')
   })
 
   it('toggles back to testnet', () => {
-    render(<NetworkProvider><NetworkDisplay /></NetworkProvider>)
+    render(<NetworkProvider mainnetEnabled><NetworkDisplay /></NetworkProvider>)
     fireEvent.click(screen.getByText('Toggle'))
+    fireEvent.click(screen.getByText('Toggle'))
+    expect(screen.getByTestId('network').textContent).toBe('testnet')
+  })
+
+  it('stays on testnet when mainnet is not enabled', () => {
+    render(<NetworkProvider mainnetEnabled={false}><NetworkDisplay /></NetworkProvider>)
     fireEvent.click(screen.getByText('Toggle'))
     expect(screen.getByTestId('network').textContent).toBe('testnet')
   })
