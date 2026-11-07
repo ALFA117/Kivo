@@ -339,6 +339,32 @@ em     { font-style: normal; color: var(--gold-light); }
   font-size: 13px;
 }
 
+/* Despliegue sin llaves: aviso honesto de demo bajo la barra */
+.demo-banner {
+  margin: 0 40px;
+  padding: 10px 16px;
+  background: var(--gold-dim);
+  border: 1px solid rgb(var(--gold-rgb) / 0.28);
+  border-top: none;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 5;
+}
+@media (max-width: 640px) {
+  .demo-banner { margin: 0 12px; font-size: 12px; }
+  /* En móvil el aviso ya lo dice; el chip solo agregaría otra fila a la barra */
+  span.btn-network-toggle.demo-chip { display: none; }
+}
+span.btn-network-toggle.demo-chip,
+span.btn-network-toggle.demo-chip:hover {
+  border-color: rgb(var(--gold-rgb) / 0.35);
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
 .spinner {
   display: inline-block;
   width: 12px;
@@ -590,6 +616,7 @@ em     { font-style: normal; color: var(--gold-light); }
 }
 
 .btn-primary:active:not(:disabled) { transform: scale(0.97); }
+a.btn-primary { display: inline-flex; align-items: center; text-decoration: none; }
 .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .btn-ghost {

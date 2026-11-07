@@ -11,6 +11,15 @@ import { RampPage }          from './components/Ramp/RampPage'
 import { CreateOfferModal }  from './components/CreateOfferModal'
 import './App.css'
 
+// Sin estas llaves el botón de Accesly abre un popup roto y crear/financiar custodias
+// falla contra la API de Trustless Work. En ese caso la página se presenta como demo.
+const LIVE_ESCROW = Boolean(
+  import.meta.env.VITE_ACCESLY_APP_ID &&
+  import.meta.env.VITE_TRUSTLESS_API_KEY &&
+  import.meta.env.VITE_KIVO_PLATFORM_ADDRESS
+)
+const REPO_URL = 'https://github.com/ALFA117/Kivo'
+
 function shortenAddress(addr) {
   return `${addr.slice(0, 6)}...${addr.slice(-4)}`
 }
@@ -117,7 +126,11 @@ export default function App() {
             </span>
           )}
 
-          {walletAddress && (
+          {!LIVE_ESCROW && (
+            <span className="btn-network-toggle demo-chip" title={t.demo.notice}>{t.demo.badge}</span>
+          )}
+
+          {LIVE_ESCROW && walletAddress && (
             <>
               {network === 'testnet' && (
                 <button className="btn-my-escrows" onClick={() => setShowRamp(true)}>
@@ -133,7 +146,7 @@ export default function App() {
             </>
           )}
 
-          {freighterAddr ? (
+          {!LIVE_ESCROW ? null : freighterAddr ? (
             <div className="wallet-chip">
               <span className="status-dot" />
               <span className="wallet-addr">{shortenAddress(freighterAddr)}</span>
@@ -154,9 +167,11 @@ export default function App() {
             </button>
           )}
 
-          <ConnectButton />
+          {LIVE_ESCROW && <ConnectButton />}
         </div>
       </nav>
+
+      {!LIVE_ESCROW && <div className="demo-banner" role="note">{t.demo.notice}</div>}
 
       {anyError && <div className="error-banner">{anyError}</div>}
 
@@ -181,7 +196,12 @@ export default function App() {
         <p className="hero-body">{t.hero.body}</p>
 
         <div className="hero-actions">
-          {walletAddress ? (
+          {!LIVE_ESCROW ? (
+            <>
+              <a href="#vision" className="btn-primary">{t.demo.seeHow}</a>
+              <a href={REPO_URL} className="btn-ghost" target="_blank" rel="noopener noreferrer">{t.demo.code}</a>
+            </>
+          ) : walletAddress ? (
             <>
               <button className="btn-primary" onClick={() => setShowEscrow(true)}>
                 {t.hero.createEscrow}
@@ -196,7 +216,7 @@ export default function App() {
               {acceslyLoading ? t.hero.connecting : t.hero.startNow}
             </button>
           )}
-          <a href="#vision" className="btn-ghost">{t.hero.seeMore}</a>
+          {LIVE_ESCROW && <a href="#vision" className="btn-ghost">{t.hero.seeMore}</a>}
         </div>
 
         {/* Trust strip */}

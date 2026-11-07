@@ -8,6 +8,14 @@ export const translations = {
       connectFreighter: 'Conectar Freighter',
     },
 
+    // Despliegue sin llaves de Accesly / Trustless Work
+    demo: {
+      badge: 'Vista demo',
+      notice: 'Vista de demostración: este despliegue no tiene conectadas las llaves de Accesly ni de Trustless Work, así que crear, financiar y liberar custodias está desactivado aquí. La red sigue fija en Stellar testnet; el flujo completo corre en local con esas llaves (ver README).',
+      seeHow: 'Ver cómo funciona',
+      code: 'Ver el código',
+    },
+
     // Hero
     hero: {
       eyebrow: 'Stellar Hackathon 2026',
@@ -283,6 +291,13 @@ export const translations = {
       connectFreighter: 'Connect Freighter',
     },
 
+    demo: {
+      badge: 'Demo view',
+      notice: 'Demo view: this deployment is not connected to Accesly or Trustless Work keys, so creating, funding and releasing escrows is disabled here. The network stays on Stellar testnet; the full flow runs locally with those keys (see README).',
+      seeHow: 'See how it works',
+      code: 'View the code',
+    },
+
     hero: {
       eyebrow: 'Stellar Hackathon 2026',
       title1: 'Trust Rails',
@@ -543,6 +558,13 @@ export const translations = {
       myEscrows: 'Meus Escrows',
       disconnectFreighter: 'Desconectar Freighter',
       connectFreighter: 'Conectar Freighter',
+    },
+
+    demo: {
+      badge: 'Visão demo',
+      notice: 'Visão de demonstração: esta implantação não tem as chaves do Accesly nem do Trustless Work, então criar, financiar e liberar custódias está desativado aqui. A rede continua fixa na Stellar testnet; o fluxo completo roda localmente com essas chaves (ver README).',
+      seeHow: 'Ver como funciona',
+      code: 'Ver o código',
     },
 
     hero: {
