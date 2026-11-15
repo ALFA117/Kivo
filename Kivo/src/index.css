@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
@@ -18,14 +16,6 @@ body {
 }
 
 ::selection {
-  background: rgb(var(--gold-rgb) / 0.22);
-  color: var(--gold-light);
+  background: var(--accent);
+  color: var(--on-accent);
 }
-
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgb(var(--fg-rgb) / 0.09);
-  border-radius: 99px;
-}
-::-webkit-scrollbar-thumb:hover { background: rgb(var(--fg-rgb) / 0.15); }
