@@ -14,6 +14,9 @@ export const translations = {
       notice: 'Vista de demostración: este despliegue no tiene conectadas las llaves de Accesly ni de Trustless Work, así que crear, financiar y liberar custodias está desactivado aquí. La red sigue fija en Stellar testnet; el flujo completo corre en local con esas llaves (ver README).',
       seeHow: 'Ver cómo funciona',
       code: 'Ver el código',
+      accesly: 'Entrar con Accesly',
+      buyNotice: 'Pago en Stellar testnet: no se mueve dinero real. Revisa monto y vendedor antes de confirmar.',
+      buyNoticeDemo: 'Vista demo: este despliegue no tiene las llaves de Accesly ni de Trustless Work, así que la compra está desactivada. Red fija en Stellar testnet.',
     },
     flow: {
       title: "Ciclo de una custodia",
@@ -42,7 +45,7 @@ export const translations = {
 
     // Vision
     vision: {
-      tag: 'Panorama General',
+      tag: 'Panorama general',
       title: '¿Qué es Kivo?',
       p1: 'Kivo es una infraestructura fintech de "Rieles de Confianza" diseñada para el mercado mexicano y transfronterizo. Funciona como una plataforma de custodia programática (Escrow) que asegura transacciones de alto valor eliminando el riesgo de fraude entre desconocidos.',
       p2: 'A diferencia de un notario tradicional, Kivo utiliza la red Stellar para garantizar que el dinero solo se libere cuando las condiciones del trato se cumplan, transformando la desconfianza del mercado informal en certeza matemática.',
@@ -50,51 +53,51 @@ export const translations = {
 
     // Problem
     problem: {
-      tag: 'El Problema',
+      tag: 'El problema',
       title: 'Lo que resolvemos',
-      card1Title: 'Inseguridad en Transacciones',
+      card1Title: 'Inseguridad en las transacciones',
       card1Body: 'El miedo a estafas en la compraventa de autos o inmuebles genera parálisis financiera en México.',
-      card2Title: 'Fricción en Remesas',
+      card2Title: 'Fricción en las remesas',
       card2Body: 'Los migrantes en EE. UU. no tienen forma segura de pagar activos directamente en México garantizando que el dinero llegue al vendedor real.',
     },
 
     // Architecture
     arch: {
-      tag: 'Arquitectura Técnica',
-      title: 'Cuatro pilares Stellar-Native',
+      tag: 'Arquitectura técnica',
+      title: 'Cuatro pilares nativos de Stellar',
       pillars: [
-        { n: '01', title: 'Smart Contracts', sub: 'Soroban / Rust', body: 'Cofre digital inmutable. Los fondos se bloquean y solo se liberan bajo condiciones predefinidas y auditables.' },
-        { n: '02', title: 'Rampa de Rendimiento', sub: 'Etherfuse / RWA', body: 'El capital en custodia se convierte en tokens de bonos gubernamentales — productivo en lugar de estático.' },
-        { n: '03', title: 'On/Off Ramps', sub: 'SEP-24 · Bitso · Anclap', body: 'Depósitos vía SPEI y retiros bancarios instantáneos en múltiples divisas a través de Anchors nativos.' },
-        { n: '04', title: 'AI Concierge', sub: 'WhatsApp + App', body: 'Agente inteligente que traduce la complejidad blockchain a lenguaje sencillo. Soporte 24/7 del estado del dinero.' },
+        { n: '01', title: 'Contratos inteligentes', sub: 'Soroban / Rust', body: 'Cofre digital inmutable. Los fondos se bloquean y solo se liberan bajo condiciones predefinidas y auditables.' },
+        { n: '02', title: 'Rampa de rendimiento', sub: 'Etherfuse / RWA', body: 'El capital en custodia se convierte en tokens de bonos gubernamentales — productivo en lugar de estático.' },
+        { n: '03', title: 'Rampas de entrada y salida', sub: 'SEP-24 · Bitso · Anclap', body: 'Depósitos vía SPEI y retiros bancarios instantáneos en múltiples divisas a través de Anchors nativos.' },
+        { n: '04', title: 'Asistente con IA', sub: 'WhatsApp + App', body: 'Agente inteligente que traduce la complejidad blockchain a lenguaje sencillo. Soporte 24/7 del estado del dinero.' },
       ],
     },
 
     // Business Model
     bmc: {
-      tag: 'Business Model',
-      title: 'Modelo de Negocio',
+      tag: 'Lienzo de negocio',
+      title: 'Modelo de negocio',
       blocks: [
-        { title: 'Propuesta de Valor', items: ['"Confianza Instantánea": escrow inmutable con rendimientos reales (RWA) y comisiones competitivas.'] },
+        { title: 'Propuesta de valor', items: ['"Confianza Instantánea": escrow inmutable con rendimientos reales (RWA) y comisiones competitivas.'] },
         { title: 'Clientes', items: ['Mexicanos en EE. UU.', 'Lotes de autos · Inmobiliarias', 'Freelancers internacionales'] },
-        { title: 'Socios Clave', items: ['SDF · Stellar Foundation', 'Etherfuse (RWA)', 'Bitso · Anclap', 'Compliance MX/EE.UU.'] },
+        { title: 'Socios clave', items: ['SDF · Stellar Foundation', 'Etherfuse (RWA)', 'Bitso · Anclap', 'Compliance MX/EE.UU.'] },
         { title: 'Recursos', items: ['Contratos Soroban', 'Red de Anchors', 'Agentes de IA', 'Reputación on-chain'] },
       ],
-      financial: 'Modelo Financiero',
+      financial: 'Modelo financiero',
       txFees: 'Comisiones por transacción',
       floatNote: '+ Float Yield en custodia · + Verificación vehicular y legal',
-      costStructure: 'Estructura de Costos',
-      costs: ['Auditoría de Smart Contracts e IA', 'Compliance regulatorio MX/EE.UU.', 'Infraestructura cloud', 'Adquisición de clientes'],
+      costStructure: 'Estructura de costos',
+      costs: ['Auditoría de contratos inteligentes e IA', 'Compliance regulatorio MX/EE.UU.', 'Infraestructura cloud', 'Adquisición de clientes'],
     },
 
     // Goals
     goals: {
       tag: 'Hackathon 2026',
-      title: 'Objetivos de Demostración',
+      title: 'Objetivos de demostración',
       items: [
         { icon: '⚡', title: 'Interoperabilidad', body: 'Movimiento de fondos de EE. UU. a México con liquidación en segundos.' },
         { icon: '◈', title: 'Eficiencia', body: 'Transacciones de bajo costo para proteger desde micro-pagos hasta grandes capitales.' },
-        { icon: '⬟', title: 'Impacto Social', body: 'Proteger el patrimonio de familias mexicanas frente al fraude documental y financiero.' },
+        { icon: '⬟', title: 'Impacto social', body: 'Proteger el patrimonio de familias mexicanas frente al fraude documental y financiero.' },
       ],
     },
 
@@ -280,6 +283,10 @@ export const translations = {
 
     buy: {
       tag: 'Oferta de compra segura',
+      amountLabel: 'Monto a pagar',
+      networkLabel: 'Red',
+      stepsTitle: 'Cómo funciona la compra',
+      sellerLabel: 'Vendedor',
       step1: 'Conecta tu wallet',
       step2: 'Tu dirección queda como comprador en el escrow',
       step3: 'Financia y espera la entrega para liberar fondos',
@@ -308,6 +315,9 @@ export const translations = {
       notice: 'Demo view: this deployment is not connected to Accesly or Trustless Work keys, so creating, funding and releasing escrows is disabled here. The network stays on Stellar testnet; the full flow runs locally with those keys (see README).',
       seeHow: 'See how it works',
       code: 'View the code',
+      accesly: 'Sign in with Accesly',
+      buyNotice: 'Payment on Stellar testnet: no real money moves. Check the amount and seller before confirming.',
+      buyNoticeDemo: 'Demo view: this deployment has no Accesly or Trustless Work keys, so purchasing is disabled. Network fixed to Stellar testnet.',
     },
     flow: {
       title: "Lifecycle of an escrow",
@@ -351,17 +361,17 @@ export const translations = {
 
     arch: {
       tag: 'Technical Architecture',
-      title: 'Four Stellar-Native Pillars',
+      title: 'Four Stellar-native pillars',
       pillars: [
         { n: '01', title: 'Smart Contracts', sub: 'Soroban / Rust', body: 'Immutable digital vault. Funds are locked and only released under predefined, auditable conditions.' },
         { n: '02', title: 'Yield Ramp', sub: 'Etherfuse / RWA', body: 'Capital in custody is converted into government bond tokens — productive instead of idle.' },
-        { n: '03', title: 'On/Off Ramps', sub: 'SEP-24 · Bitso · Anclap', body: 'SPEI deposits and instant bank withdrawals in multiple currencies via native Anchors.' },
-        { n: '04', title: 'AI Concierge', sub: 'WhatsApp + App', body: 'Intelligent agent that translates blockchain complexity into plain language. 24/7 support on money status.' },
+        { n: '03', title: 'On- and off-ramps', sub: 'SEP-24 · Bitso · Anclap', body: 'SPEI deposits and instant bank withdrawals in multiple currencies via native Anchors.' },
+        { n: '04', title: 'AI assistant', sub: 'WhatsApp + App', body: 'Intelligent agent that translates blockchain complexity into plain language. 24/7 support on money status.' },
       ],
     },
 
     bmc: {
-      tag: 'Business Model',
+      tag: 'Business canvas',
       title: 'Business Model',
       blocks: [
         { title: 'Value Proposition', items: ['"Instant Trust": immutable escrow with real yields (RWA) and competitive fees.'] },
@@ -561,6 +571,10 @@ export const translations = {
 
     buy: {
       tag: 'Secure purchase offer',
+      amountLabel: 'Amount to pay',
+      networkLabel: 'Network',
+      stepsTitle: 'How the purchase works',
+      sellerLabel: 'Seller',
       step1: 'Connect your wallet',
       step2: 'Your address becomes the buyer in the escrow',
       step3: 'Fund it and wait for delivery to release funds',
@@ -589,6 +603,9 @@ export const translations = {
       notice: 'Visão de demonstração: esta implantação não tem as chaves do Accesly nem do Trustless Work, então criar, financiar e liberar custódias está desativado aqui. A rede continua fixa na Stellar testnet; o fluxo completo roda localmente com essas chaves (ver README).',
       seeHow: 'Ver como funciona',
       code: 'Ver o código',
+      accesly: 'Entrar com Accesly',
+      buyNotice: 'Pagamento na Stellar testnet: nenhum dinheiro real é movido. Confira valor e vendedor antes de confirmar.',
+      buyNoticeDemo: 'Visão demo: esta implantação não tem as chaves do Accesly nem do Trustless Work, então a compra está desativada. Rede fixa na Stellar testnet.',
     },
     flow: {
       title: "Ciclo de uma custódia",
@@ -615,45 +632,45 @@ export const translations = {
     },
 
     vision: {
-      tag: 'Visão Geral',
+      tag: 'Visão geral',
       title: 'O que é o Kivo?',
       p1: 'Kivo é uma infraestrutura fintech de "Trilhos de Confiança" projetada para o mercado mexicano e transfronteiriço. Funciona como uma plataforma de custódia programática (Escrow) que assegura transações de alto valor eliminando o risco de fraude entre desconhecidos.',
       p2: 'Ao contrário de um cartório tradicional, o Kivo utiliza a rede Stellar para garantir que o dinheiro só seja liberado quando as condições do acordo sejam cumpridas, transformando a desconfiança do mercado informal em certeza matemática.',
     },
 
     problem: {
-      tag: 'O Problema',
+      tag: 'O problema',
       title: 'O que resolvemos',
-      card1Title: 'Insegurança em Transações',
+      card1Title: 'Insegurança nas transações',
       card1Body: 'O medo de golpes na compra e venda de carros ou imóveis gera paralisia financeira no México.',
-      card2Title: 'Fricção em Remessas',
+      card2Title: 'Fricção nas remessas',
       card2Body: 'Os migrantes nos EUA não têm forma segura de pagar ativos diretamente no México garantindo que o dinheiro chegue ao vendedor real.',
     },
 
     arch: {
-      tag: 'Arquitetura Técnica',
-      title: 'Quatro pilares Stellar-Native',
+      tag: 'Arquitetura técnica',
+      title: 'Quatro pilares nativos da Stellar',
       pillars: [
-        { n: '01', title: 'Smart Contracts', sub: 'Soroban / Rust', body: 'Cofre digital imutável. Os fundos são bloqueados e só liberados sob condições predefinidas e auditáveis.' },
+        { n: '01', title: 'Contratos inteligentes', sub: 'Soroban / Rust', body: 'Cofre digital imutável. Os fundos são bloqueados e só liberados sob condições predefinidas e auditáveis.' },
         { n: '02', title: 'Rampa de Rendimento', sub: 'Etherfuse / RWA', body: 'O capital em custódia é convertido em tokens de títulos governamentais — produtivo em vez de estático.' },
-        { n: '03', title: 'On/Off Ramps', sub: 'SEP-24 · Bitso · Anclap', body: 'Depósitos via SPEI e saques bancários instantâneos em múltiplas moedas através de Anchors nativos.' },
-        { n: '04', title: 'AI Concierge', sub: 'WhatsApp + App', body: 'Agente inteligente que traduz a complexidade blockchain para linguagem simples. Suporte 24/7 do estado do dinheiro.' },
+        { n: '03', title: 'Rampas de entrada e saída', sub: 'SEP-24 · Bitso · Anclap', body: 'Depósitos via SPEI e saques bancários instantâneos em múltiplas moedas através de Anchors nativos.' },
+        { n: '04', title: 'Assistente com IA', sub: 'WhatsApp + App', body: 'Agente inteligente que traduz a complexidade blockchain para linguagem simples. Suporte 24/7 do estado do dinheiro.' },
       ],
     },
 
     bmc: {
-      tag: 'Modelo de Negócio',
-      title: 'Modelo de Negócio',
+      tag: 'Canvas de negócio',
+      title: 'Modelo de negócio',
       blocks: [
-        { title: 'Proposta de Valor', items: ['"Confiança Instantânea": escrow imutável com rendimentos reais (RWA) e comissões competitivas.'] },
+        { title: 'Proposta de valor', items: ['"Confiança Instantânea": escrow imutável com rendimentos reais (RWA) e comissões competitivas.'] },
         { title: 'Clientes', items: ['Mexicanos nos EUA', 'Revendas de carros · Imobiliárias', 'Freelancers internacionais'] },
-        { title: 'Parceiros-Chave', items: ['SDF · Stellar Foundation', 'Etherfuse (RWA)', 'Bitso · Anclap', 'Compliance MX/EUA'] },
+        { title: 'Parceiros-chave', items: ['SDF · Stellar Foundation', 'Etherfuse (RWA)', 'Bitso · Anclap', 'Compliance MX/EUA'] },
         { title: 'Recursos', items: ['Contratos Soroban', 'Rede de Anchors', 'Agentes de IA', 'Reputação on-chain'] },
       ],
-      financial: 'Modelo Financeiro',
+      financial: 'Modelo financeiro',
       txFees: 'Comissões por transação',
       floatNote: '+ Float Yield em custódia · + Verificação veicular e legal',
-      costStructure: 'Estrutura de Custos',
+      costStructure: 'Estrutura de custos',
       costs: ['Auditoria de Smart Contracts e IA', 'Compliance regulatório MX/EUA', 'Infraestrutura cloud', 'Aquisição de clientes'],
     },
 
@@ -663,7 +680,7 @@ export const translations = {
       items: [
         { icon: '⚡', title: 'Interoperabilidade', body: 'Movimentação de fundos dos EUA para o México com liquidação em segundos.' },
         { icon: '◈', title: 'Eficiência', body: 'Transações de baixo custo para proteger desde micro-pagamentos até grandes capitais.' },
-        { icon: '⬟', title: 'Impacto Social', body: 'Proteger o patrimônio de famílias mexicanas contra fraudes documentais e financeiras.' },
+        { icon: '⬟', title: 'Impacto social', body: 'Proteger o patrimônio de famílias mexicanas contra fraudes documentais e financeiras.' },
       ],
     },
 
@@ -842,6 +859,10 @@ export const translations = {
 
     buy: {
       tag: 'Oferta de compra segura',
+      amountLabel: 'Valor a pagar',
+      networkLabel: 'Rede',
+      stepsTitle: 'Como funciona a compra',
+      sellerLabel: 'Vendedor',
       step1: 'Conecte sua carteira',
       step2: 'Seu endereço fica como comprador no escrow',
       step3: 'Financie e aguarde a entrega para liberar os fundos',
