@@ -7,6 +7,7 @@ import { OnrampForm }    from './OnrampForm'
 import { OfframpForm }   from './OfframpForm'
 import { OrderStatus }   from './OrderStatus'
 import './Ramp.css'
+import { Icon } from '../Icons'
 
 export function RampPage({ onClose }) {
   const [tab, setTab]             = useState('onramp')
@@ -49,7 +50,7 @@ export function RampPage({ onClose }) {
             <div className="ramp-title-icon">⟳</div>
             On/Off Ramp
           </div>
-          <button className="ramp-close" onClick={onClose} aria-label={r.close}>✕</button>
+          <button className="ramp-close" onClick={onClose} aria-label={r.close}><Icon name="x" size={18} /></button>
         </div>
 
         {showStatus ? (

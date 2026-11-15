@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useEscrowFlow } from '../hooks/useEscrowFlow'
 import { useLanguage } from '../context/LanguageContext'
+import { Icon } from './Icons'
 
 function shortenAddress(addr) {
   if (!addr) return ''
@@ -37,7 +38,7 @@ export function EscrowModal({ walletAddress, onClose }) {
     return (
       <ModalOverlay onClose={onClose}>
         <div className="modal-success">
-          <div className="modal-success-icon">✓</div>
+          <div className="modal-success-icon"><Icon name="check" size={28} strokeWidth={2.25} /></div>
           <h3>{e.successTitle}</h3>
           <p className="modal-success-sub">{e.successSub}</p>
           {result.contractId ? (

@@ -1,4 +1,6 @@
 import { useLanguage } from '../../context/LanguageContext'
+import { Icon } from '../Icons'
+const STATUS_ICON = { awaiting_payment: 'refresh', processing: 'loader', completed_onramp: 'circleCheck', completed_offramp: 'circleCheck', error: 'circleX' }
 
 export function OrderStatus({ status, order, quote, onReset }) {
   const { t } = useLanguage()
@@ -46,7 +48,7 @@ export function OrderStatus({ status, order, quote, onReset }) {
 
       {/* Header */}
       <div className="ramp-status-header">
-        <div className="ramp-status-icon">{h.icon}</div>
+        <div className="ramp-status-icon"><Icon name={STATUS_ICON[headerKey] || 'loader'} size={28} /></div>
         <div className="ramp-status-title">{h.title}</div>
         {h.sub && <div className="ramp-status-sub">{h.sub}</div>}
       </div>

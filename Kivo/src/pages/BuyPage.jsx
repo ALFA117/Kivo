@@ -3,6 +3,7 @@ import { ConnectButton } from 'accesly'
 import { useWallet } from '../context/WalletContext'
 import { useLanguage } from '../context/LanguageContext'
 import { useEscrowFlow } from '../hooks/useEscrowFlow'
+import { Icon } from '../components/Icons'
 
 function shortenAddress(addr) {
   if (!addr) return ''
@@ -65,7 +66,7 @@ export function BuyPage() {
         <BuyNav freighterAddr={freighterAddr} freighterLoading={freighterLoading} connectFreighter={connectFreighter} disconnectFreighter={disconnectFreighter} />
         <div className="buy-container">
           <div className="buy-card">
-            <div className="modal-success-icon">✓</div>
+            <div className="modal-success-icon"><Icon name="check" size={28} strokeWidth={2.25} /></div>
             <h2 style={{ marginBottom: '0.5rem' }}>{b.successTitle}</h2>
             <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>{b.successSub}</p>
             {result.contractId && (
@@ -170,7 +171,7 @@ function BuyNav({ freighterAddr, freighterLoading, connectFreighter, disconnectF
           <div className="wallet-chip">
             <span className="status-dot" />
             <span className="wallet-addr">{freighterAddr.slice(0, 6)}...{freighterAddr.slice(-4)}</span>
-            <button className="btn-disconnect" onClick={disconnectFreighter}>✕</button>
+            <button className="btn-disconnect" onClick={disconnectFreighter} aria-label="Desconectar"><Icon name="x" size={14} strokeWidth={2} /></button>
           </div>
         ) : (
           <button className="btn-connect-freighter" onClick={connectFreighter} disabled={freighterLoading}>

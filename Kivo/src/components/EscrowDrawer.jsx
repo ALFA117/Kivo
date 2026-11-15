@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useMyEscrows } from '../hooks/useMyEscrows'
 import { EscrowDetailModal } from './EscrowDetailModal'
 import { useLanguage } from '../context/LanguageContext'
+import { Icon } from './Icons'
 
 function shorten(addr, start = 6, end = 4) {
   if (!addr) return '—'
@@ -104,7 +105,7 @@ export function EscrowDrawer({ walletAddress, onClose }) {
 
           {!loading && !error && escrows.length === 0 && (
             <div className="drawer-empty">
-              <span className="drawer-empty-icon">⬡</span>
+              <span className="drawer-empty-icon"><Icon name="inbox" size={28} /></span>
               <p>{d.empty}</p>
               <p className="drawer-empty-sub">{d.emptySub}</p>
             </div>

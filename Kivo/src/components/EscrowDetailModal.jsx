@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useEscrowFlow } from '../hooks/useEscrowFlow'
 import { useLanguage } from '../context/LanguageContext'
+import { Icon } from './Icons'
 
 const ROLES_KEYS = ['approver', 'serviceProvider', 'releaseSigner', 'disputeResolver', 'receiver', 'platformAddress']
 
@@ -164,7 +165,7 @@ export function EscrowDetailModal({ escrow, walletAddress, onClose, onActionDone
                 <div key={i} className="milestone-item">
                   <span className={`milestone-dot ${m.approved ? 'milestone-done' : ''}`} />
                   <span className="milestone-desc">{m.description || `${d.milestone} ${i + 1}`}</span>
-                  {m.approved && <span className="milestone-check">✓</span>}
+                  {m.approved && <span className="milestone-check"><Icon name="check" size={14} strokeWidth={2.5} /></span>}
                 </div>
               ))}
             </div>
@@ -293,7 +294,7 @@ export function EscrowDetailModal({ escrow, walletAddress, onClose, onActionDone
         {/* ── Confirmación ── */}
         {actionDone && (
           <div className="action-success">
-            <span className="action-success-icon">✓</span>
+            <span className="action-success-icon"><Icon name="check" size={16} strokeWidth={2.5} /></span>
             {actionLabels[actionDone]}
           </div>
         )}
