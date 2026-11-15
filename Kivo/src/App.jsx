@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { ConnectButton } from 'accesly'
 import { useWallet } from './context/WalletContext'
 import { useLanguage } from './context/LanguageContext'
 import ThemeToggle from './components/ThemeToggle'
@@ -9,16 +8,10 @@ import { EscrowModal }       from './components/EscrowModal'
 import { EscrowDrawer }      from './components/EscrowDrawer'
 import { RampPage }          from './components/Ramp/RampPage'
 import { CreateOfferModal }  from './components/CreateOfferModal'
+import { AcceslyConnect }    from './components/AcceslyConnect'
+import { LIVE_ESCROW, REPO_URL } from './config'
 import './App.css'
 
-// Sin estas llaves el botón de Accesly abre un popup roto y crear/financiar custodias
-// falla contra la API de Trustless Work. En ese caso la página se presenta como demo.
-const LIVE_ESCROW = Boolean(
-  import.meta.env.VITE_ACCESLY_APP_ID &&
-  import.meta.env.VITE_TRUSTLESS_API_KEY &&
-  import.meta.env.VITE_KIVO_PLATFORM_ADDRESS
-)
-const REPO_URL = 'https://github.com/ALFA117/Kivo'
 
 function shortenAddress(addr) {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`
@@ -101,7 +94,16 @@ export default function App() {
       { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
     )
     els.forEach(el => observer.observe(el))
-    return () => observer.disconnect()
+    // Red de seguridad: impresión, capturas de página completa o un observer que
+    // no dispare nunca dejan el contenido visible en lugar de en blanco.
+    const showAll = () => els.forEach(el => el.classList.add('is-visible'))
+    const failsafe = setTimeout(showAll, 2500)
+    window.addEventListener('beforeprint', showAll)
+    return () => {
+      observer.disconnect()
+      clearTimeout(failsafe)
+      window.removeEventListener('beforeprint', showAll)
+    }
   }, [])
 
   const quote = (() => {
@@ -185,7 +187,7 @@ export default function App() {
               </button>
             )}
 
-            {LIVE_ESCROW && <ConnectButton />}
+            {LIVE_ESCROW && <AcceslyConnect />}
 
             <div className="nav-tools">
               <div className="lang-selector" role="group" aria-label="Idioma / Language">

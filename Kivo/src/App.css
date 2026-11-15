@@ -698,10 +698,10 @@ h3 { font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
 }
 .pillar:hover { border-color: var(--line-strong); }
 .pillar--1 {
-  grid-row: span 2;
+  grid-column: span 2;
   border-color: var(--line-strong);
+  border-top: 2px solid var(--accent);
   box-shadow: var(--hard-shadow);
-  justify-content: space-between;
 }
 .pillar--4 { grid-column: span 2; }
 .pillar-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-6); }
@@ -709,9 +709,8 @@ h3 { font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
 .pillar h3 { font-size: 19px; }
 .pillar-sub { margin-top: var(--s-1); font-size: 13px; color: var(--accent-ink); }
 .pillar-body { margin-top: var(--s-3); font-size: 15px; line-height: 1.6; color: var(--fg-2); }
-.pillar--1 h3 { font-size: 26px; letter-spacing: -0.02em; margin-top: auto; }
-.pillar--1 .pillar-body { font-size: 17px; max-width: 36ch; }
-.pillar--1 .pillar-top { margin-bottom: var(--s-16); }
+.pillar--1 h3 { font-size: 24px; letter-spacing: -0.02em; }
+.pillar--1 .pillar-body { font-size: 17px; max-width: 52ch; }
 
 /* 04 · Modelo de negocio: tabla de definiciones + libro de comisiones */
 .bmc-layout {
@@ -836,8 +835,7 @@ h3 { font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
   .sec-split .sec-head { position: static; }
   .bmc-layout { grid-template-columns: 1fr; }
   .bento { grid-template-columns: 1fr 1fr; }
-  .pillar--1 { grid-row: auto; grid-column: span 2; }
-  .pillar--1 .pillar-top { margin-bottom: var(--s-8); }
+  .pillar--1 { grid-column: span 2; }
   .pillar--4 { grid-column: span 2; }
 }
 
@@ -2200,3 +2198,252 @@ h3 { font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
 .modal-success-icon,
 .drawer-empty-icon,
 .ramp-status-icon { display: inline-grid; place-items: center; }
+
+
+/* ─────────────────────────────────────────
+   ACCESLY: botón de la librería alineado a la paleta
+   El SDK pinta con estilos en línea (gradiente morado, halo, texto
+   fijo en inglés); aquí se sobrescriben y se pone la etiqueta traducida.
+───────────────────────────────────────── */
+.accesly-slot { display: inline-flex; }
+.accesly-slot--block { display: flex; width: 100%; }
+
+.accesly-slot > button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--s-2) !important;
+  height: 36px !important;
+  padding: 0 var(--s-3) !important;
+  border-radius: var(--r-sm) !important;
+  box-shadow: none !important;
+  font-family: var(--font-sans) !important;
+  white-space: nowrap !important;
+  transform: none !important;
+  transition: background 0.15s, border-color 0.15s !important;
+}
+.accesly-slot--block > button { width: 100%; height: 48px !important; }
+
+/* Desconectado: mismo trato que .btn-primary */
+.accesly-slot > button:has(> svg:first-child) {
+  background: var(--accent) !important;
+  color: var(--on-accent) !important;
+  border: 1px solid var(--accent) !important;
+  font-size: 0 !important;
+}
+.accesly-slot > button:has(> svg:first-child)::after {
+  content: var(--accesly-label, 'Accesly');
+  font: 500 14px/1 var(--font-sans);
+}
+.accesly-slot--block > button:has(> svg:first-child)::after { font-size: 15px; }
+.accesly-slot > button:has(> svg:first-child) > svg { width: 16px; height: 16px; flex-shrink: 0; }
+.accesly-slot > button:has(> svg:first-child):hover {
+  background: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Conectado / creando / cargando: chip neutro */
+.accesly-slot > button:not(:has(> svg:first-child)),
+.accesly-slot > div:first-child {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--r-sm) !important;
+  color: var(--fg) !important;
+  height: 36px !important;
+}
+.accesly-slot > button:not(:has(> svg:first-child)) span { color: var(--fg-2) !important; font-family: var(--font-mono) !important; font-size: 13px !important; }
+.accesly-slot > button:not(:has(> svg:first-child)) span:empty { background: var(--line) !important; }
+.accesly-slot > button:not(:has(> svg:first-child)) > div:first-child { width: 16px !important; height: 16px !important; border-radius: 3px !important; }
+.accesly-slot > button:focus-visible { outline: none; box-shadow: var(--focus) !important; }
+
+/* Diálogo de conexión del SDK: superficie de Kivo en lugar de morado y vidrio */
+.accesly-slot > button:has(> svg:first-child) ~ div {
+  background: rgb(var(--bg-rgb) / 0.82) !important;
+  backdrop-filter: none !important;
+  font-family: var(--font-sans) !important;
+}
+.accesly-slot > button:has(> svg:first-child) ~ div > div {
+  background: var(--surface) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: var(--shadow-modal) !important;
+}
+.accesly-slot > button:has(> svg:first-child) ~ div > div > div {
+  background: var(--accent-soft) !important;
+  border-color: transparent !important;
+  border-radius: var(--r-md) !important;
+}
+.accesly-slot > button:has(> svg:first-child) ~ div > div > div svg { stroke: var(--accent-ink); }
+.accesly-slot > button:has(> svg:first-child) ~ div h2 { color: var(--fg) !important; letter-spacing: -0.02em; }
+.accesly-slot > button:has(> svg:first-child) ~ div p { color: var(--muted) !important; }
+.accesly-slot > button:has(> svg:first-child) ~ div button { color: var(--muted) !important; }
+.accesly-slot > button:has(> svg:first-child) ~ div > div > button:nth-of-type(2) {
+  background: var(--surface) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--r-sm) !important;
+  min-height: 48px;
+}
+
+/* ─────────────────────────────────────────
+   PÁGINA DE COMPRA (/?seller=…): recibo formal
+───────────────────────────────────────── */
+.bp-nav { flex-wrap: wrap; row-gap: var(--s-2); }
+.bp-nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.bp-notice {
+  border-bottom: 1px solid var(--line);
+  background: var(--accent-soft);
+}
+.bp-notice .demo-banner-inner svg { color: var(--accent-ink); }
+
+.bp-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--s-12) var(--gutter) var(--s-20);
+}
+
+.bp-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: 6px 6px 0 var(--bg-tint);
+  overflow: hidden;
+}
+
+.bp-head { padding: var(--s-8) var(--s-8) var(--s-6); }
+.bp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-ink);
+}
+.bp-title {
+  margin-top: var(--s-3);
+  font-size: clamp(24px, 3.2vw, 30px);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+.bp-desc { margin-top: var(--s-2); font-size: 16px; line-height: 1.55; color: var(--fg-2); overflow-wrap: anywhere; }
+
+.bp-mono { font-family: var(--font-mono); }
+.bp-label { font-size: 13px; font-weight: 500; color: var(--muted); }
+
+.bp-ledger { border-top: 1px solid var(--line); margin: 0; }
+.bp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-8);
+  border-bottom: 1px solid var(--line);
+}
+.bp-row dd { margin: 0; font-size: 15px; color: var(--fg); }
+.bp-row code { font-size: 14px; color: var(--fg); }
+.bp-row--amount { padding-top: var(--s-6); padding-bottom: var(--s-6); background: var(--surface-2); }
+.bp-amount { font-size: 30px !important; font-weight: 600; letter-spacing: -0.02em; color: var(--fg); }
+.bp-amount span { font-size: 15px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.bp-net { display: inline-flex; align-items: center; gap: var(--s-2); }
+
+.bp-how { padding: var(--s-6) var(--s-8); }
+.bp-steps { list-style: none; margin: var(--s-3) 0 0; padding: 0; display: grid; gap: var(--s-3); }
+.bp-steps li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+.bp-step-n { font-family: var(--font-mono); font-size: 12px; color: var(--accent-ink); min-width: 20px; }
+
+.bp-actions {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-6) var(--s-8) var(--s-8);
+  border-top: 1px solid var(--line);
+  background: var(--bg-tint);
+}
+.bp-card .modal-error { margin: 0 var(--s-8) var(--s-6); }
+.bp-hint { font-size: 15px; color: var(--fg-2); }
+.bp-buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  width: 100%;
+  min-height: 48px;
+  border-radius: var(--r-sm);
+  font: 600 15px/1 var(--font-sans);
+  cursor: pointer;
+}
+.bp-connect { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+.bp-connect-btn { width: 100%; height: 48px; justify-content: center; }
+.bp-wallet {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 14px;
+  color: var(--fg);
+}
+
+.bp-done-head { display: flex; gap: var(--s-4); align-items: flex-start; padding: var(--s-8); }
+.bp-done-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.bp-done-head .bp-title { margin-top: 0; }
+.bp-contract { display: grid; gap: var(--s-2); padding: var(--s-4) var(--s-8); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface-2); }
+.bp-contract-id { font-size: 13px; color: var(--fg); overflow-wrap: anywhere; }
+.bp-done-head + .bp-steps,
+.bp-contract + .bp-steps { padding: var(--s-6) var(--s-8) var(--s-8); margin: 0; }
+
+@media (max-width: 720px) {
+  .btn-my-escrows,
+  .btn-connect-freighter,
+  .btn-network-toggle,
+  .accesly-slot > button,
+  .accesly-slot > div:first-child { height: 44px !important; }
+  .accesly-slot--block > button { height: 48px !important; }
+}
+
+@media (max-width: 480px) {
+  /* La tarjeta ya trae los botones de wallet; la barra se queda limpia */
+  .bp-nav-wallet { display: none !important; }
+  /* En la landing, «Empezar ahora» ya abre Accesly: la barra solo muestra la cuenta ya conectada */
+  .navbar-inner .accesly-slot:has(> button > svg:first-child) { display: none; }
+  .bp-main { padding: var(--s-6) var(--gutter) var(--s-16); }
+  .bp-card { box-shadow: 4px 4px 0 var(--bg-tint); }
+  .bp-head, .bp-how { padding-left: var(--s-5); padding-right: var(--s-5); }
+  .bp-row { padding-left: var(--s-5); padding-right: var(--s-5); }
+  .bp-actions { padding: var(--s-5); }
+  .bp-card .modal-error { margin-left: var(--s-5); margin-right: var(--s-5); }
+  .bp-connect { grid-template-columns: 1fr; }
+  .bp-amount { font-size: 26px !important; }
+}
+
+/* Aparición: al imprimir todo se ve, aunque no se haya hecho scroll */
+@media print {
+  .js-reveal [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
