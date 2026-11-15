@@ -15,6 +15,18 @@ export const translations = {
       seeHow: 'Ver cómo funciona',
       code: 'Ver el código',
     },
+    flow: {
+      title: "Ciclo de una custodia",
+      note: "Esquema del flujo single-release de Trustless Work",
+      steps: [
+        { title: "Se acuerda el trato", body: "Comprador y vendedor fijan monto, hito de entrega y árbitro." },
+        { title: "El comprador deposita USDC", body: "Los fondos entran a un contrato Soroban, no a una cuenta de Kivo." },
+        { title: "El dinero queda retenido", body: "Nadie puede moverlo mientras el hito no se confirme." },
+        { title: "Entrega confirmada, pago liberado", body: "El contrato paga al vendedor. Si hay disputa, decide el árbitro." },
+      ],
+    },
+    trust: ["Red Stellar", "USDC nativo", "Sin intermediarios", "Código abierto"],
+    sections: { repo: "Repositorio en GitHub", fees: "Comisión por plan" },
 
     // Hero
     hero: {
@@ -297,6 +309,18 @@ export const translations = {
       seeHow: 'See how it works',
       code: 'View the code',
     },
+    flow: {
+      title: "Lifecycle of an escrow",
+      note: "Outline of the Trustless Work single-release flow",
+      steps: [
+        { title: "The deal is agreed", body: "Buyer and seller set the amount, delivery milestone and arbiter." },
+        { title: "The buyer deposits USDC", body: "Funds go into a Soroban contract, not into a Kivo account." },
+        { title: "The money stays locked", body: "No one can move it until the milestone is confirmed." },
+        { title: "Delivery confirmed, payment released", body: "The contract pays the seller. In a dispute, the arbiter decides." },
+      ],
+    },
+    trust: ["Stellar network", "Native USDC", "No intermediaries", "Open source"],
+    sections: { repo: "GitHub repository", fees: "Fee per plan" },
 
     hero: {
       eyebrow: 'Stellar Hackathon 2026',
@@ -566,6 +590,18 @@ export const translations = {
       seeHow: 'Ver como funciona',
       code: 'Ver o código',
     },
+    flow: {
+      title: "Ciclo de uma custódia",
+      note: "Esquema do fluxo single-release da Trustless Work",
+      steps: [
+        { title: "O acordo é fechado", body: "Comprador e vendedor definem valor, marco de entrega e árbitro." },
+        { title: "O comprador deposita USDC", body: "Os fundos entram em um contrato Soroban, não em uma conta da Kivo." },
+        { title: "O dinheiro fica retido", body: "Ninguém pode movê-lo até o marco ser confirmado." },
+        { title: "Entrega confirmada, pagamento liberado", body: "O contrato paga o vendedor. Em caso de disputa, decide o árbitro." },
+      ],
+    },
+    trust: ["Rede Stellar", "USDC nativo", "Sem intermediários", "Código aberto"],
+    sections: { repo: "Repositório no GitHub", fees: "Comissão por plano" },
 
     hero: {
       eyebrow: 'Stellar Hackathon 2026',
