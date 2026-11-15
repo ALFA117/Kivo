@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
-import { ConnectButton } from 'accesly'
 import { useWallet } from '../context/WalletContext'
 import { useLanguage } from '../context/LanguageContext'
 import { useEscrowFlow } from '../hooks/useEscrowFlow'
-import { Icon } from '../components/Icons'
+import { Icon, KivoMark } from '../components/Icons'
+import { AcceslyConnect } from '../components/AcceslyConnect'
+import { useNetwork } from '../context/NetworkContext'
+import { LIVE_ESCROW } from '../config'
 
 function shortenAddress(addr) {
   if (!addr) return ''
-  return `${addr.slice(0, 6)}...${addr.slice(-4)}`
+  return `${addr.slice(0, 6)}…${addr.slice(-4)}`
 }
 
 export function BuyPage() {
@@ -41,6 +43,9 @@ export function BuyPage() {
   } = useWallet()
 
   const { createEscrow, loading, error, result } = useEscrowFlow()
+  const { network } = useNetwork()
+  const netName = `Stellar ${network === 'mainnet' ? 'Mainnet' : 'Testnet'}`
+  const steps = [b.step1, b.step2, b.step3]
 
   async function handleBuy() {
     if (!walletAddress) return
@@ -62,74 +67,104 @@ export function BuyPage() {
   /* ── Éxito ── */
   if (result?.contractId !== undefined) {
     return (
-      <div className="app">
-        <BuyNav freighterAddr={freighterAddr} freighterLoading={freighterLoading} connectFreighter={connectFreighter} disconnectFreighter={disconnectFreighter} />
-        <div className="buy-container">
-          <div className="buy-card">
-            <div className="modal-success-icon"><Icon name="check" size={28} strokeWidth={2.25} /></div>
-            <h2 style={{ marginBottom: '0.5rem' }}>{b.successTitle}</h2>
-            <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>{b.successSub}</p>
+      <div className="app bp">
+        <BuyNav netName={netName} network={network} freighterAddr={freighterAddr} freighterLoading={freighterLoading} connectFreighter={connectFreighter} disconnectFreighter={disconnectFreighter} />
+        <BuyNotice network={network} t={t} />
+        <main className="bp-main">
+          <section className="bp-card" aria-labelledby="bp-done">
+            <div className="bp-done-head">
+              <span className="bp-done-icon"><Icon name="circleCheck" size={22} strokeWidth={2} /></span>
+              <div>
+                <h1 id="bp-done" className="bp-title">{b.successTitle}</h1>
+                <p className="bp-desc">{b.successSub}</p>
+              </div>
+            </div>
             {result.contractId && (
-              <div className="contract-id-box">
-                <span className="contract-label">Contract ID</span>
-                <code className="contract-value">{result.contractId}</code>
+              <div className="bp-contract">
+                <span className="bp-label">Contract ID</span>
+                <code className="bp-mono bp-contract-id">{result.contractId}</code>
               </div>
             )}
-            <div className="buy-flow-info" style={{ marginTop: '1.25rem' }}>
-              <div className="flow-step"><span className="flow-n">1</span> {b.successStep1}</div>
-              <div className="flow-step"><span className="flow-n">2</span> {b.successStep2} {amount} USDC</div>
-              <div className="flow-step"><span className="flow-n">3</span> {b.successStep3}</div>
-            </div>
-          </div>
-        </div>
+            <ol className="bp-steps">
+              <li><span className="bp-step-n">01</span>{b.successStep1}</li>
+              <li><span className="bp-step-n">02</span><span>{b.successStep2} <span className="bp-mono">{amount} USDC</span></span></li>
+              <li><span className="bp-step-n">03</span>{b.successStep3}</li>
+            </ol>
+          </section>
+        </main>
       </div>
     )
   }
 
   /* ── Formulario de compra ── */
   return (
-    <div className="app">
+    <div className="app bp">
       <BuyNav
+        netName={netName}
+        network={network}
         freighterAddr={freighterAddr}
         freighterLoading={freighterLoading}
         connectFreighter={connectFreighter}
         disconnectFreighter={disconnectFreighter}
       />
+      <BuyNotice network={network} t={t} />
 
-      <div className="buy-container">
-        <div className="buy-card">
-          <span className="modal-tag">{b.tag}</span>
-          <h2 className="buy-title">{title}</h2>
-          {desc !== title && <p className="buy-desc">{desc}</p>}
+      <main className="bp-main">
+        <section className="bp-card" aria-labelledby="bp-title">
+          <header className="bp-head">
+            <p className="bp-tag">
+              <Icon name="shieldCheck" size={16} />
+              {b.tag}
+            </p>
+            <h1 id="bp-title" className="bp-title">{title}</h1>
+            {desc !== title && <p className="bp-desc">{desc}</p>}
+          </header>
 
-          <div className="buy-details">
-            <div className="buy-detail-row">
-              <span className="buy-detail-label">USDC</span>
-              <span className="buy-amount">{amount} USDC</span>
+          <dl className="bp-ledger">
+            <div className="bp-row bp-row--amount">
+              <dt className="bp-label">{b.amountLabel}</dt>
+              <dd className="bp-amount bp-mono">{amount} <span>USDC</span></dd>
             </div>
-            <div className="buy-detail-row">
-              <span className="buy-detail-label">{t.offer?.qrSeller || 'Vendedor'}</span>
-              <code className="modal-wallet-addr">{shortenAddress(seller)}</code>
+            <div className="bp-row">
+              <dt className="bp-label">{b.sellerLabel}</dt>
+              <dd><code className="bp-mono" title={seller}>{shortenAddress(seller)}</code></dd>
             </div>
+            <div className="bp-row">
+              <dt className="bp-label">{b.networkLabel}</dt>
+              <dd className="bp-net">
+                <span className={`net-dot${network === 'mainnet' ? ' net-dot--main' : ''}`} />
+                {netName}
+              </dd>
+            </div>
+          </dl>
+
+          <div className="bp-how">
+            <p className="bp-label">{b.stepsTitle}</p>
+            <ol className="bp-steps">
+              {steps.map((s, i) => (
+                <li key={i}><span className="bp-step-n">{String(i + 1).padStart(2, '0')}</span>{s}</li>
+              ))}
+            </ol>
           </div>
 
-          <div className="buy-flow-info">
-            <div className="flow-step"><span className="flow-n">1</span> {b.step1}</div>
-            <div className="flow-step"><span className="flow-n">2</span> {b.step2}</div>
-            <div className="flow-step"><span className="flow-n">3</span> {b.step3}</div>
-          </div>
+          {error && <div className="modal-error" role="alert">{error}</div>}
 
-          {error && <div className="modal-error">{error}</div>}
-
-          {walletAddress ? (
-            <>
-              <div className="modal-wallet-row" style={{ marginBottom: '1rem' }}>
+          {!LIVE_ESCROW ? (
+            <div className="bp-actions">
+              <button className="btn-primary bp-buy" disabled>
+                <Icon name="lock" size={16} strokeWidth={2} />
+                {b.buyBtn} {amount} USDC
+              </button>
+            </div>
+          ) : walletAddress ? (
+            <div className="bp-actions">
+              <div className="bp-wallet">
                 <span className="status-dot" />
-                <span className="modal-wallet-label">{b.yourWallet}</span>
-                <code className="modal-wallet-addr">{shortenAddress(walletAddress)}</code>
+                <span className="bp-label">{b.yourWallet}</span>
+                <code className="bp-mono">{shortenAddress(walletAddress)}</code>
               </div>
               <button
-                className="btn-primary buy-btn"
+                className="btn-primary bp-buy"
                 onClick={handleBuy}
                 disabled={loading}
               >
@@ -138,47 +173,78 @@ export function BuyPage() {
                   : `${b.buyBtn} ${amount} USDC`
                 }
               </button>
-            </>
+            </div>
           ) : (
-            <div className="buy-connect-section">
-              <p style={{ color: 'var(--muted)', marginBottom: '1rem' }}>{b.connectHint}</p>
-              <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                <button className="btn-connect-freighter" onClick={connectFreighter} disabled={freighterLoading}>
-                  {freighterLoading ? <span className="spinner" /> : 'Freighter'}
+            <div className="bp-actions">
+              <p className="bp-hint">{b.connectHint}</p>
+              <div className="bp-connect">
+                <button className="btn-connect-freighter bp-connect-btn" onClick={connectFreighter} disabled={freighterLoading}>
+                  {freighterLoading ? <span className="spinner" /> : <Icon name="wallet" size={16} />}
+                  Freighter
                 </button>
-                <ConnectButton />
+                <AcceslyConnect block />
               </div>
             </div>
           )}
+        </section>
+      </main>
+    </div>
+  )
+}
+
+/* ── Aviso de red / demo: el comprador llega por enlace y debe verlo ── */
+function BuyNotice({ network, t }) {
+  if (!LIVE_ESCROW) {
+    return (
+      <div className="demo-banner" role="note">
+        <div className="demo-banner-inner">
+          <Icon name="info" size={18} />
+          <p>{t.demo.buyNoticeDemo}</p>
         </div>
+      </div>
+    )
+  }
+  if (network !== 'testnet') return null
+  return (
+    <div className="bp-notice" role="note">
+      <div className="demo-banner-inner">
+        <Icon name="info" size={18} />
+        <p>{t.demo.buyNotice}</p>
       </div>
     </div>
   )
 }
 
-/* ── Navbar ── */
-function BuyNav({ freighterAddr, freighterLoading, connectFreighter, disconnectFreighter }) {
+/* ── Barra ── */
+function BuyNav({ netName, network, freighterAddr, freighterLoading, connectFreighter, disconnectFreighter }) {
+  const { t } = useLanguage()
   return (
-    <nav className="navbar">
-      <div className="nav-brand">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <polygon points="10,1 18,5.5 18,14.5 10,19 2,14.5 2,5.5" stroke="var(--gold)" strokeWidth="1.5" fill="none"/>
-        </svg>
-        <span>Kivo</span>
-      </div>
-      <div className="nav-wallet">
-        {freighterAddr ? (
-          <div className="wallet-chip">
-            <span className="status-dot" />
-            <span className="wallet-addr">{freighterAddr.slice(0, 6)}...{freighterAddr.slice(-4)}</span>
-            <button className="btn-disconnect" onClick={disconnectFreighter} aria-label="Desconectar"><Icon name="x" size={14} strokeWidth={2} /></button>
-          </div>
-        ) : (
-          <button className="btn-connect-freighter" onClick={connectFreighter} disabled={freighterLoading}>
-            {freighterLoading ? <span className="spinner" /> : 'Freighter'}
-          </button>
-        )}
-        <ConnectButton />
+    <nav className="navbar navbar--scrolled" aria-label="Kivo">
+      <div className="navbar-inner bp-nav">
+        <a className="nav-brand" href="/" aria-label="Kivo">
+          <KivoMark size={22} />
+          <span>Kivo</span>
+        </a>
+        <div className="bp-nav-right">
+          <span className="net-chip">
+            <span className={`net-dot${network === 'mainnet' ? ' net-dot--main' : ''}`} />
+            {netName}
+          </span>
+          {!LIVE_ESCROW && <span className="demo-chip">{t.demo.badge}</span>}
+          {LIVE_ESCROW && (freighterAddr ? (
+            <div className="wallet-chip">
+              <span className="status-dot" />
+              <span className="wallet-addr">{freighterAddr.slice(0, 6)}…{freighterAddr.slice(-4)}</span>
+              <button className="btn-disconnect" onClick={disconnectFreighter} aria-label={t.nav.disconnectFreighter}><Icon name="x" size={14} strokeWidth={2} /></button>
+            </div>
+          ) : (
+            <button className="btn-connect-freighter bp-nav-wallet" onClick={connectFreighter} disabled={freighterLoading} title={t.nav.connectFreighter}>
+              {freighterLoading ? <span className="spinner" /> : <Icon name="wallet" size={15} />}
+              Freighter
+            </button>
+          ))}
+          {LIVE_ESCROW && <span className="bp-nav-wallet"><AcceslyConnect /></span>}
+        </div>
       </div>
     </nav>
   )
